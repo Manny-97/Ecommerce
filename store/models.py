@@ -1,9 +1,12 @@
-from django.db import models
 from django.contrib.auth.models import User
+from django.db import models
 from django.urls import reverse
+
 # Create your models here.
 
 # Category table
+
+
 class Category(models.Model):
     name = models.CharField(max_length=255, db_index=True)
     slug = models.SlugField(max_length=255, unique=True)
@@ -17,9 +20,7 @@ class Category(models.Model):
     def get_absolute_url(self):
         # breakpoint()
         return reverse('store:category_list', args=[self.slug])
-    
 
-    
 
 # Product table
 class Product(models.Model):
@@ -28,7 +29,7 @@ class Product(models.Model):
     title = models.CharField(max_length=255)
     author = models.CharField(max_length=255, default='admin')
     description = models.TextField(blank=True)
-    image = models.ImageField(upload_to='images/')      # Not storing the image in the db, we just storing the link to the image
+    image = models.ImageField(upload_to='images/')
     slug = models.SlugField(max_length=255)
     price = models.DecimalField(decimal_places=2, max_digits=4)
     in_stock = models.BooleanField(default=True)
@@ -45,4 +46,3 @@ class Product(models.Model):
 
     def get_absolute_url(self):
         return reverse('store:product_detail', args=[self.slug])
-    
