@@ -1,5 +1,6 @@
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render
+import basket
 
 from store.models import Product
 
@@ -23,4 +24,13 @@ def basket_add(request):
 
         basketqty = basket.__len__()
         response = JsonResponse({'qty': basketqty})
+        return response
+
+
+def basket_delete(request):
+    basket = Basket(request)
+    if request.POST.get('action') == 'post':
+        product_id = int(request.POST.get('productid'))
+        basket.delete(product=product_id)
+        response = JsonResponse({'Succes': True})
         return response
