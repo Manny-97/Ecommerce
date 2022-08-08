@@ -45,5 +45,11 @@ class Basket():
             del self.basket[product_id]
             self.session.modified = True
 
+    def update(self, product, qty):
+        """ """
+        product_id = product
+        if product_id not in self.basket:
+            self.basket[product_id]['qty'] = qty
+
     def save(self):
         self.session.modified = True
