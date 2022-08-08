@@ -65,7 +65,7 @@
     var prodid = $(this).data('index');
     $.ajax({
       type: 'POST',
-      url: '{% url "basket:basket_delete" %}',
+      url: '',
       data: {
         productid: $(this).data('index'),
         csrfmiddlewaretoken: "{{csrf_token}}",
@@ -86,7 +86,7 @@
     var prodid = $(this).data('index');
     $.ajax({
       type: 'POST',
-      url: '{% url "basket:basket_update" %}',
+      url: '',
       data: {
         productid: $(this).data('index'),
         productqty: $('#select' + prodid + ' option:selected').text(),
