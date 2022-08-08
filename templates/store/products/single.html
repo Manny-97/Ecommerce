@@ -55,7 +55,9 @@
                 csrfmiddlewaretoken: "{{csrf_token}}",
                 action: 'post'
             },
-            success: function(json){},
+            success: function(json){
+                document.getElementById("basket-qty").innerHTML = json.qty
+            },
             error: function(xhr, errmsg, err) {}
         });
     })
