@@ -21,7 +21,7 @@ class Basket():
     def __iter__(self):
         """Collect the product_id in the session data to query the database and return products"""
         product_ids = self.basket.keys()
-        products = Product.products.filter(id_in=product_ids)
+        products = Product.products.filter(id__in=product_ids)
         basket = self.basket.copy()
 
         for product in products:
