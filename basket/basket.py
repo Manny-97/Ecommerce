@@ -1,5 +1,7 @@
-from store.models import Product
 from decimal import Decimal
+
+from store.models import Product
+
 
 class Basket():
     """A base Basket class, providing some behavior that can be inherited or overriden, as necessary"""
