@@ -4,5 +4,6 @@ from . import views
 app_name = 'account'
 
 urlpatterns = [
-    path('register/', views.account_registration, name='register')
+    path('register/', views.account_registration, name='register'),
+    path('activate/<slug:uidb64>/<slug:token>/', views.account_activate, name='activate'),
 ]
