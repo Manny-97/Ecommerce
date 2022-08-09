@@ -13,7 +13,7 @@ from django.template.loader import render_to_string
 
 @login_required
 def dashboard(request):
-    orders = user_orders(request)
+    # orders = user_orders(request)
     return render(request, 'account/user/dashboard.html')
 
 @login_required
