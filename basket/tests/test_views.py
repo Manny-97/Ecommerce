@@ -7,6 +7,7 @@ from store.models import Category,Product
 
 class TestBasketView(TestCase):
     def setUp(self) -> None:
+        """To create date for testing"""
         User.objects.create(username='admin')
         Category.objects.create(name='django', slug='django')
         Product.objects.create(category_id=1, title='django-beginners', slug='django-beginners', price='20.00', image='django', created_by_id=1)
