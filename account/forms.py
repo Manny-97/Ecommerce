@@ -63,17 +63,17 @@ class RegistrationForm(forms.ModelForm):
 class UserEditForm(forms.ModelForm):
 
     email = forms.CharField(
-       label='Email', max_length=150, widget=forms.TextInput(
+       label='Account Email (cannot be changed)', max_length=150, widget=forms.TextInput(
         attrs={'class': 'form-control mb-3', 'placeholder': 'email', 'id': 'form-email', 'readonly': 'readonly'}
        ) 
     )
     user_name = forms.CharField(
-        label='', min_length=4, max_length=50, widget=forms.TextInput(
-            attrs={'class': 'form-control mb-3', 'placeholder': 'Username', 'id':'form-firstname', 'readonly': 'readonly'}
+        label='Username', min_length=4, max_length=50, widget=forms.TextInput(
+            attrs={'Firstname': 'form-control mb-3', 'placeholder': 'Username', 'id':'form-firstname', 'readonly': 'readonly'}
         )
     )
     first_name = forms.CharField(
-        label='', min_length=4, max_length=50, widget=forms.TextInput(
+        label='Username', min_length=4, max_length=50, widget=forms.TextInput(
             attrs={'class': 'form-control mb-3', 'placeholder': 'Firstname', 'id': 'form-lastname'}
         )
     )
