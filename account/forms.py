@@ -60,3 +60,24 @@ class RegistrationForm(forms.ModelForm):
         self.fields['password2'].widget.attrs.update(
             {'class': 'form-control', 'placeholder': 'Repeat Password'})
 
+class UserEditForm(forms.ModelForm):
+
+    email = forms.CharField(
+
+    )
+    user_name = forms.CharField(
+
+    )
+    first_name = forms.CharField(
+
+    )
+
+    class Meta:
+        model = UserBase
+        fields = ('email', 'user_name', 'first_name',)
+
+    #Required fields
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['email'].required = True
+        self.fields['user_name'].required = True
