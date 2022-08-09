@@ -1,6 +1,22 @@
 from django import forms
 from .models import UserBase
+from django.contrib.auth.forms import AuthenticationForm
 
+class UserLoginForm(AuthenticationForm):
+    username = forms.CharField(widget=forms.TextInput(
+        attrs={
+            'class': 'form-control mb-3',
+            'placeholder': 'Username',
+            'id': 'login-username'
+        }
+    ))
+    password = forms.CharField(widget=forms.PasswordInput(
+        attrs={
+            'class': 'form-control',
+            'placeholder': 'Password',
+            'id': 'login-pwd'
+        }
+    ))
 class RegistrationForm(forms.ModelForm):
     """Register User"""
     user_name = forms.CharField(label='Enter Username', min_length=4, max_length=50, help_text='Required')
@@ -32,7 +48,7 @@ class RegistrationForm(forms.ModelForm):
         if UserBase.objects.filter(email=email).exists():
             raise forms.ValidationError("Email already taken, use another email")
         return email
-        
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['user_name'].widget.attrs.update(
@@ -43,3 +59,4 @@ class RegistrationForm(forms.ModelForm):
             {'class': 'form-control mb-3', 'placeholder': 'Password'})
         self.fields['password2'].widget.attrs.update(
             {'class': 'form-control', 'placeholder': 'Repeat Password'})
+
