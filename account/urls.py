@@ -1,6 +1,6 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
-from .forms import UserLoginForm, PwdResetForm, PwdResetFormConfirm
+from .forms import UserLoginForm, PwdResetForm, PwdResetConfirmForm
 from . import views
 from django.views.generic import TemplateView
 
@@ -15,7 +15,7 @@ urlpatterns = [
     path('password_reset/', auth_views.PasswordResetView.as_view(template_name='account/user/password_reset_form.html',
                                                  success_url='password_reset_email_confrim', form_class=PwdResetForm), name='pwdreset'),
     path('password_reset_confirm/<uidb64>/<token>/', auth_views.PasswordResetView.as_view(template_name='account/user/password_reset_form.html', 
-                                                success_url='account/password_reset_complete/', form_class=PwdResetFormConfirm), name='password_reset_confirm'),
+                                                success_url='account/password_reset_complete/', form_class=PwdResetConfirmForm), name='password_reset_confirm'),
     #Dashboard
     path('dashboard/', views.dashboard, name='dashboard'),
     path('profile/edit/', views.edit_details, name='edit_details'),
