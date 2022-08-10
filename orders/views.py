@@ -1,13 +1,14 @@
-from django.shortcuts import render
-from basket.basket import Basket
 from django.http.response import JsonResponse
+
+from basket.basket import Basket
+
 from .models import Order, OrderItem
-# Create your views here.
 
 
 def add(request):
     basket = Basket(request)
     if request.POST.get('action') == 'post':
+
         order_key = request.POST.get('order_key')
         user_id = request.user.id
         baskettotal = basket.get_total_price()
@@ -16,8 +17,7 @@ def add(request):
         if Order.objects.filter(order_key=order_key).exists():
             pass
         else:
-            order = Order.objects.create(user_id=user_id, full_name='name', address1='add1',
-                                address2='add2', total_paid=baskettotal, order_key=order_key)
+            order = Order.objects.create(user_id=user_id, full_name='name', address1='add1', address2='add2', total_paid=baskettotal, order_key=order_key)
             order_id = order.pk
 
             for item in basket:
@@ -26,8 +26,10 @@ def add(request):
         response = JsonResponse({'success': 'Return something'})
         return response
 
+
 def payment_confirmation(data):
     Order.objects.filter(order_key=data).update(billing_status=True)
+
 
 def user_orders(request):
     user_id = request.user.id

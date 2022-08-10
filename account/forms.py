@@ -1,6 +1,9 @@
 from django import forms
+from django.contrib.auth.forms import (AuthenticationForm, PasswordResetForm,
+                                       SetPasswordForm)
+
 from .models import UserBase
-from django.contrib.auth.forms import AuthenticationForm, PasswordResetForm, SetPasswordForm
+
 
 class UserLoginForm(AuthenticationForm):
     username = forms.CharField(widget=forms.TextInput(
@@ -17,6 +20,8 @@ class UserLoginForm(AuthenticationForm):
             'id': 'login-pwd'
         }
     ))
+
+
 class RegistrationForm(forms.ModelForm):
     """Register User"""
     user_name = forms.CharField(label='Enter Username', min_length=4, max_length=50, help_text='Required')
@@ -60,16 +65,17 @@ class RegistrationForm(forms.ModelForm):
         self.fields['password2'].widget.attrs.update(
             {'class': 'form-control', 'placeholder': 'Repeat Password'})
 
+
 class UserEditForm(forms.ModelForm):
 
     email = forms.CharField(
        label='Account Email (cannot be changed)', max_length=150, widget=forms.TextInput(
         attrs={'class': 'form-control mb-3', 'placeholder': 'email', 'id': 'form-email', 'readonly': 'readonly'}
-       ) 
+        )
     )
     user_name = forms.CharField(
         label='Username', min_length=4, max_length=50, widget=forms.TextInput(
-            attrs={'Firstname': 'form-control mb-3', 'placeholder': 'Username', 'id':'form-firstname', 'readonly': 'readonly'}
+            attrs={'Firstname': 'form-control mb-3', 'placeholder': 'Username', 'id': 'form-firstname', 'readonly': 'readonly'}
         )
     )
     first_name = forms.CharField(
@@ -82,11 +88,12 @@ class UserEditForm(forms.ModelForm):
         model = UserBase
         fields = ('email', 'user_name', 'first_name',)
 
-    #Required fields
+    # Required fields
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['email'].required = True
         self.fields['user_name'].required = True
+
 
 class PwdResetForm(PasswordResetForm):
     email = forms.EmailField(
@@ -101,6 +108,7 @@ class PwdResetForm(PasswordResetForm):
         if not u:
             raise forms.ValidationError("Not a User")
         return email
+
 
 class PwdResetConfirmForm(SetPasswordForm):
     new_password = forms.CharField(

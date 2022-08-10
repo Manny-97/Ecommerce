@@ -1,10 +1,10 @@
-from statistics import quantiles
-from django.db import models
 from django.conf import settings
-from decimal import Decimal
+from django.db import models
+
 from store.models import Product
 
 # Create your models here.
+
 
 class Order(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='order_user', on_delete=models.CASCADE)
@@ -32,6 +32,6 @@ class OrderItem(models.Model):
     product = models.ForeignKey(Product, related_name='order_items', on_delete=models.CASCADE)
     price = models.DecimalField(max_digits=5, decimal_places=2)
     quantity = models.PositiveIntegerField(default=1)
-    
+
     def __str__(self):
         return str(self.id)
