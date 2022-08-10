@@ -26,7 +26,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['yourdomain.com', '127.0.0.1']
+ALLOWED_HOSTS = ['yourdomain.com', '127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -124,7 +124,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
-STATICFILES_DIR = [
+STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static")
 ]
 MEDIA_URL = '/media/'
@@ -132,6 +132,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
+# basket session
+BASKET_SESSION_ID = 'basket'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Custom user model
 AUTH_USER_MODEL = 'account.UserBase'
@@ -141,3 +143,6 @@ LOGIN_URL = '/account/login'
 PASSWORD_RESET_TIMEOUT_DAYS = 2
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# stripe payment
+STRIPE_ENDPOINT_SECRET = 'acct_1LVE6QAHIwfrWKcq'

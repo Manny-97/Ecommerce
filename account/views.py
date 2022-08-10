@@ -15,7 +15,7 @@ from .token import account_activation_token
 @login_required
 def dashboard(request):
     orders = user_orders(request)
-    return render(request, 'account/user/dashboard.html')
+    return render(request, 'account/user/dashboard.html', {'orders': orders})
 
 
 @login_required
@@ -61,8 +61,8 @@ def account_registration(request):
             return HttpResponse('Registered Successfully and Account Activation sent')
 
     else:
-        registerform = RegistrationForm()
-    return render(request, 'account/registration/register.html', {'form': registerform})
+        registerForm = RegistrationForm()
+    return render(request, 'account/registration/register.html', {'form': registerForm})
 
 
 def account_activate(request, uidb64, token):
