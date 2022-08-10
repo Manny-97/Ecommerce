@@ -99,5 +99,5 @@ class PwdResetForm(forms.ModelForm):
         email = self.cleaned_data['email']
         u = UserBase.objects.filter(email=email)
         if not u:
-            raise forms.ValidationError("Unfortunately we cannot find that email")
+            raise forms.ValidationError("Not a User")
         return email
