@@ -6,7 +6,7 @@ from django.shortcuts import redirect, render
 from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes, force_str
 from django.utils.http import urlsafe_base64_encode
-
+from orders.views import user_orders
 from .forms import RegistrationForm, UserEditForm
 from .models import UserBase
 from .token import account_activation_token
@@ -14,7 +14,7 @@ from .token import account_activation_token
 
 @login_required
 def dashboard(request):
-    # orders = user_orders(request)
+    orders = user_orders(request)
     return render(request, 'account/user/dashboard.html')
 
 
