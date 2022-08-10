@@ -14,10 +14,12 @@ def BasketView(request):
     print(total)
     # Stripe doesnt accept decimal, hence the need to convert to integer
     total = int(total.replace('.', ''))
-    stripe.api_key = 'sk_test_51LVE6QAHIwfrWKcqEpigYsYM8m0wHTZ3t05UDPADrqNHti2KxBbTdCcf7tzxySgZRurQI8daOCzBzSlisnJMLW4h00DGOM6K1O'
+    stripe.api_key = "sk_test_51LVE6QAHIwfrWKcqEpigYsYM8m0wHTZ3t05UDPADrqNHti2KxBbTdCcf7tzxySgZRurQI8daOCzBzSlisnJMLW4h00DGOM6K1O"
     intent = stripe.PaymentIntent.create(amount=total, currency='gbp', metadata={'userid': request.user.id})
     return render(request, 'payment/home.html', {'client_secret': intent.client_secret})
 
 
 def order_placed(request):
-    return render()
+    basket = Basket(request)
+    basket.clear()
+    return render(request, 'payment/orderplaced.html')
