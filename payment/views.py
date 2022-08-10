@@ -6,9 +6,10 @@ from basket.basket import Basket
 # Create your views here.
 
 @login_required
-def Basketview(request):
+def BasketView(request):
     basket = Basket(request)
     total = str(basket.get_total_price())
+    print(total)
     # Stripe doesnt accept decimal, hence the need to convert to integer
     total = int(total.replace('.', ''))
     stripe.api_key = 'secret_key'
@@ -18,3 +19,6 @@ def Basketview(request):
         metadata = {'userid': request.user.id}
     )
     return render(request, 'payment/home.html', {'client_secret': intent.client_secret})
+
+def order_placed(request):
+    return render()
