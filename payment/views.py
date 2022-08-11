@@ -1,12 +1,15 @@
+import json
+import os
+
 import stripe
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
-import os
-from orders.views import payment_confirmation
 from django.http.response import HttpResponse
-import json
-from basket.basket import Basket
+from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
+
+from basket.basket import Basket
+from orders.views import payment_confirmation
+
 # Create your views here.
 
 
