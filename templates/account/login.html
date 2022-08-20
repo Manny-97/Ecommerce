@@ -3,7 +3,7 @@
 {% block sub_content %}
 
 
-<form class="account-form p-4" action="{% url 'account:login' %}" method="post">
+<form class="account-form" action="{% url 'account:login' %}" method="post">
 
     {% csrf_token %}
     <h3 class="mb-4">Sign In</h3>

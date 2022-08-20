@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes, force_str
-from django.utils.http import urlsafe_base64_encode
+from django.utils.http import urlsafe_base64_decode
 
 from orders.views import user_orders
 
@@ -17,7 +17,7 @@ from .token import account_activation_token
 @login_required
 def dashboard(request):
     orders = user_orders(request)
-    return render(request, 'account/user/dashboard.html', {'orders': orders})
+    return render(request, 'account/dashboard/dashboard.html', {'orders': orders})
 
 
 @login_required
@@ -28,7 +28,7 @@ def edit_details(request):
             user_form.save()
     else:
         user_form = UserEditForm(instance=request.user)
-    return render(request, 'account/user/edit_details.html', {'user_form': user_form})
+    return render(request, 'account/dashboard/edit_details.html', {'user_form': user_form})
 
 
 @login_required
@@ -60,7 +60,7 @@ def account_registration(request):
                 'token': account_activation_token.make_token(user)
             })
             user.email_user(subject=subject, message=message)
-            return HttpResponse('Registered Successfully and Account Activation sent')
+            return render(request, 'account/registration/register_email_confirm.html', {'form': registerForm})
 
     else:
         registerForm = RegistrationForm()
@@ -69,7 +69,7 @@ def account_registration(request):
 
 def account_activate(request, uidb64, token):
     try:
-        uid = force_str(urlsafe_base64_encode(uidb64))
+        uid = force_str(urlsafe_base64_decode(uidb64))
         user = UserBase.objects.get(pk=uid)
     except UserBase.DoesNotExist:
         pass
