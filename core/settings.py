@@ -146,3 +146,5 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # stripe payment
 STRIPE_ENDPOINT_SECRET = 'acct_1LVE6QAHIwfrWKcq'
+STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
+os.environ.setdefault('STRIPE_PUBLISHABLE_KEY', 'pk_test_51LVE6QAHIwfrWKcqIDVSDm0gPRScYiU7uFxUMdco2GI4k6hrBV1VceAhhOOeUSDXxLmku5LSwdRVF7uHWOWrICtq00l9MJ8xFx')
