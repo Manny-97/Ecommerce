@@ -1,12 +1,11 @@
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render
-
 from store.models import Product
 
 from .basket import Basket
-from rest_framework import status, permissions
-from rest_framework.views import APIView
-from rest_framework.response import Response
+# from rest_framework import permissions, status
+# from rest_framework.response import Response
+# from rest_framework.views import APIView
 # Create your views here.
 
 
