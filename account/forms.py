@@ -1,4 +1,3 @@
-from dataclasses import field
 from django import forms
 from django.contrib.auth.forms import (AuthenticationForm, PasswordResetForm,
                                        SetPasswordForm)
@@ -7,9 +6,10 @@ from .models import Customer, Address
 
 
 class UserAddressForm(forms.ModelForm):
+
     class Meta:
         model = Address
-        fields = ["full_name", "phone", "address_line", "address_line2", "town_city", "postcode"]
+        fields = ["full_name", "phone", "address_line_1", "address_line_2", "town_city", "postcode",]
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -19,10 +19,10 @@ class UserAddressForm(forms.ModelForm):
         self.fields["phone"].widget.attrs.update(
             {"class": "form-control mb-2 account-form", "placholder": "Full Name"}
         )
-        self.fields["address_line"].widget.attrs.update(
+        self.fields["address_line_1"].widget.attrs.update(
             {"class": "form-control mb-2 account-form", "placholder": "Full Name"}
         )
-        self.fields["address_line2"].widget.attrs.update(
+        self.fields["address_line_2"].widget.attrs.update(
             {"class": "form-control mb-2 account-form", "placholder": "Full Name"}
         )
         self.fields["town_city"].widget.attrs.update(
