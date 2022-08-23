@@ -1,5 +1,6 @@
 from email.policy import default
 from urllib import request
+
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.sites.shortcuts import get_current_site
@@ -121,10 +122,12 @@ def edit_address(request, id):
         address_form = UserAddressForm(instance=address)
     return render(request, "account/dashboard/edit_addresses.html", {"form": address_form})
 
+
 @login_required
 def delete_address(request, id):
     address = Address.objects.filter(pk=id, customer=request.user).delete()
     return redirect("account:addresses")
+
 
 @login_required
 def set_default(request, id):
