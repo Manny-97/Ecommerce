@@ -47,7 +47,7 @@
           <div class="pt-5">
             <a href="{% url 'account:edit_address' address.id %}" class="text-decoration-none">Edit</a>
             |
-            {% comment %} <a href="{% url 'account:delete_address' address.id %}" class="text-decoration-none">Delete</a> {% endcomment %}
+            <a href="{% url 'account:delete_address' address.id %}" class="text-decoration-none">Delete</a>
             {% if not address.default %}
             {% comment %} | <a href="{% url 'account:set_default' address.id %}" class="text-decoration-none">Set Default</a> {% endcomment %}
             {% endif %}
