@@ -137,7 +137,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 BASKET_SESSION_ID = 'basket'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Custom user model
-AUTH_USER_MODEL = 'account.UserBase'
+AUTH_USER_MODEL = 'account.Customer'
 LOGIN_REDIRECT_URL = '/account/dashboard'
 LOGIN_URL = '/account/login'
 

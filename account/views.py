@@ -10,7 +10,7 @@ from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from orders.views import user_orders
 
 from .forms import RegistrationForm, UserEditForm
-from .models import UserBase
+from .models import Customer
 from .token import account_activation_token
 
 
@@ -33,7 +33,7 @@ def edit_details(request):
 
 @login_required
 def delete_user(request):
-    user = UserBase.objects.filter(user_name=request.user)
+    user = Customer.objects.filter(user_name=request.user)
     user.is_active = False
     # user.save()
     logout(request)
@@ -70,8 +70,8 @@ def account_registration(request):
 def account_activate(request, uidb64, token):
     try:
         uid = force_str(urlsafe_base64_decode(uidb64))
-        user = UserBase.objects.get(pk=uid)
-    except UserBase.DoesNotExist:
+        user = Customer.objects.get(pk=uid)
+    except Customer.DoesNotExist:
         pass
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True
