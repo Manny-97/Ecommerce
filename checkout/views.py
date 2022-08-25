@@ -59,7 +59,7 @@ def delivery_address(request):
 
 @login_required
 def payment_selection(request):
-    
+
     session = request.session
     if "address" not in request.session:
         messages.success(request, "Kindly select an address option")
@@ -71,3 +71,7 @@ def payment_selection(request):
 @login_required
 def payment_complete(request):
     return render(request, "checkout/payment_selection", {})
+
+@login_required
+def payment_successful(request):
+    return render(request, "checkout/payment_successfull.html", {})
