@@ -71,6 +71,8 @@ class Basket():
     def clear(self):
         # Remove basket from session
         del self.session['skey']
+        del self.session["purchase"]
+        del self.session["address"]
         self.save()
 
     def get_subtotal_price(self):

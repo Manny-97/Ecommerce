@@ -11,6 +11,7 @@ from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from orders.views import user_orders
 from store.models import Product
 from django.conf import settings
+from orders.models import Order
 
 from .forms import RegistrationForm, UserAddressForm, UserEditForm
 from .models import Address, Customer
@@ -155,3 +156,10 @@ def add_to_wishlist(request, id):
 def wishlist(request):
     products = Product.objects.filter(users_wishlist=request.user)
     return render(request, "account/dashboard/user_wish_list.html", {"wishlist": products})
+
+@login_required
+def user_orders(request):
+    user_id = request.user.id
+    orders = Order.objects.filter(user_id=user_id).filter(billing_status=True)
+    print(orders)
+    return render(request, "account/dashboard/user_orders.html", {"orders": orders})

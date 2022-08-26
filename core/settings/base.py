@@ -150,3 +150,5 @@ os.environ.setdefault(
     "STRIPE_PUBLISHABLE_KEY",
     "pk_test_51LVE6QAHIwfrWKcqIDVSDm0gPRScYiU7uFxUMdco2GI4k6hrBV1VceAhhOOeUSDXxLmku5LSwdRVF7uHWOWrICtq00l9MJ8xFx",
 )
+# paypal payment
+CLIENT_SECRET = os.environ.get("CLIENT_SECRET_KEY")
