@@ -144,6 +144,7 @@ PASSWORD_RESET_TIMEOUT_DAYS = 2
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 # stripe payment
+
 STRIPE_ENDPOINT_SECRET = "acct_1LVE6QAHIwfrWKcq"
 STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY")
 os.environ.setdefault(
